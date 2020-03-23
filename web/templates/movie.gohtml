@@ -1,0 +1,46 @@
+{{template "base" . }}
+{{define "body"}}
+
+    <br>
+
+    <div class="media">
+        <img class="mr-3 border border-dark" src="{{ .Movie.Image }}" alt="{{ .Movie.Title }}">
+        <div class="media-body alert alert-dark">
+            <h2 class="mt-0 text-center">{{ .Movie.Title }}</h2>
+            <table>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Description</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Description }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Year</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Year }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Country</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Country }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Actors</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Actors }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Genres</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Genres }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Creators</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Creators }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Studio</th>
+                    <td style="padding-left: 5px;">{{ .Movie.Studio }}</td>
+                </tr>
+                <tr>
+                    <th class="border-right border-dark" style="padding-right: 5px;">Link</th>
+                    <td style="padding-left: 5px;"><a href="{{ .Movie.ExtLink }}">{{ .Movie.ExtLink }}</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+{{end}}

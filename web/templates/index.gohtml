@@ -1,0 +1,23 @@
+{{template "base" . }}
+{{define "body"}}
+
+    <br>
+
+    <div class="row">
+        {{range .Movies }}
+            <div class="col-3">
+                <div class="card">
+                    <img class="card-img-top" src="{{ .Image }}" alt="{{ .Title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{.Title }}</h5>
+                        <p class="card-text">{{ range $_, $val := .Genres }}
+                                {{ $val }},
+                            {{ end }}
+                        </p>
+                        <a href="/{{ .Id }}" class="btn btn-primary">MORE</a>
+                    </div>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{end}}

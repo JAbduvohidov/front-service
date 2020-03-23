@@ -1,0 +1,45 @@
+{{define "base"}}
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{.Title}}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+              crossorigin="anonymous">
+    </head>
+    <body>
+    <div class="container">
+
+        <nav class="navbar navbar-dark bg-dark">
+            <a class="navbar-brand" href="/">MoSe Project</a>
+
+            <form action="/search" method="GET" style="width: 400px">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search" name="q" aria-label="Search"
+                           aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <input class="btn btn-outline-primary" value="OK" type="submit">
+                    </div>
+                </div>
+            </form>
+
+            <form action="/register" method="POST">
+                <input type="submit" class="btn btn-primary" value="Register">
+            </form>
+            <form action="/login" method="POST">
+                <input type="submit" class="btn btn-success" value="Login">
+            </form>
+
+        </nav>
+
+        <br>
+
+        {{template "body" .}}
+    </div>
+    </body>
+    </html>
+{{end}}

@@ -1,0 +1,35 @@
+{{template "base" . }}
+{{define "body"}}
+
+    <br>
+
+    <form action="/register" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="email" class="form-control" id="name" name="name">
+        </div>
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="email" class="form-control" id="surname" name="surname">
+        </div>
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="file">
+                <label class="custom-file-label" for="file">Choose avatar</label>
+            </div>
+            <div class="input-group-append">
+                <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="login">Login</label>
+            <input type="email" class="form-control" id="login" name="login">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{{end}}

@@ -1,0 +1,8 @@
+github.com/JAbduvohidov/di v0.0.0-20200314092359-5c95b4ada9f8 h1:Q3W1iUUcoPX7KRB6z0LYAJXvjcb/BmYVX4SrHbPXTH4=
+github.com/JAbduvohidov/di v0.0.0-20200314092359-5c95b4ada9f8/go.mod h1:1LTR2Lu990Wg5B0fUC/8OZwSAZCS5I3NGYlZnCBZez8=
+github.com/JAbduvohidov/jwt v0.0.0-20200314105802-4a51e9a9d133 h1:XYs7Tgb+aLRlsAyC/3rvuyDvH3741mA0tAEhCYuo9jE=
+github.com/JAbduvohidov/jwt v0.0.0-20200314105802-4a51e9a9d133/go.mod h1:KsjmwgWjklgAUSvrOkjdldqkbCNs736uGaTAkwy8GgU=
+github.com/JAbduvohidov/mux v0.0.0-20200315114007-51e21348a81e h1:FNY+CJBsYrFstf34HMW8fvKeT1ckMdUGxu1OCYpRg1g=
+github.com/JAbduvohidov/mux v0.0.0-20200315114007-51e21348a81e/go.mod h1:guS+CwLIN4tYlj4fDUWI16VonAAGWOctWbTt794Inlo=
+github.com/JAbduvohidov/rest v0.0.0-20200314100911-83a7cb6fd01c h1:ti/pTcx/Gy52mTqc+Kd6Hry92WL1aSCNZesYNFzYp2M=
+github.com/JAbduvohidov/rest v0.0.0-20200314100911-83a7cb6fd01c/go.mod h1:VLDAHPifwHr6FDK0wLA4iMdejvwDs94sT+dbI/udHjA=
