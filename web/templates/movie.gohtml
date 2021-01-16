@@ -4,43 +4,125 @@
     <br>
 
     <div class="media">
-        <img class="mr-3 border border-dark" src="{{ .Movie.Image }}" alt="{{ .Movie.Title }}">
-        <div class="media-body alert alert-dark">
-            <h2 class="mt-0 text-center">{{ .Movie.Title }}</h2>
-            <table>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Description</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Description }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Year</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Year }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Country</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Country }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Actors</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Actors }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Genres</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Genres }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Creators</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Creators }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Studio</th>
-                    <td style="padding-left: 5px;">{{ .Movie.Studio }}</td>
-                </tr>
-                <tr>
-                    <th class="border-right border-dark" style="padding-right: 5px;">Link</th>
-                    <td style="padding-left: 5px;"><a href="{{ .Movie.ExtLink }}">{{ .Movie.ExtLink }}</a></td>
-                </tr>
-            </table>
-        </div>
+        <img class="mr-3 border border-dark" style="max-width: 500px; min-width: 100px;" src="{{ .Movie.Image }}"
+             alt="{{ .Movie.Title }}">
+        {{$role := ""}}
+        {{if .Authorized}}
+            {{$role = .User.Role}}
+        {{end}}
+        {{if eq $role "ADMIN" "MODERATOR"}}
+        <form method="post" action="/movies/{{.Movie.Id}}" enctype="multipart/form-data" class="media-body">
+            {{end}}
+            <div class="media-body alert alert-dark">
+                {{if eq $role "ADMIN" "MODERATOR" }}
+                    <input type="text" class="form-control" id="title" name="title" value="{{ .Movie.Title }}"
+                           style="text-align: center">
+                {{else}}
+                    <h2 class="mt-0 text-center">{{ .Movie.Title }}</h2>
+                {{end}}
+                <table>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Description</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <textarea class="form-control" style="max-height: 200px; min-height: 60px"
+                                          id="description"
+                                          name="description">{{ .Movie.Description }}</textarea>
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Description }}</td>
+                        {{end}}
+                    </tr>
+                    {{if eq $role "ADMIN" "MODERATOR" }}
+                        <tr>
+                            <th class="border-right border-dark" style="padding-right: 5px;">Image</th>
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input name="image" type="file" class="form-control" id="image">
+                            </td>
+                        </tr>
+                    {{end}}
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Year</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="year" name="year" value="{{ .Movie.Year }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Year }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Country</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="country" name="country"
+                                       value="{{ .Movie.Country }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Country }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Actors</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="actors" name="actors"
+                                       value="{{ .Movie.Actors }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Actors }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Genres</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="genres" name="genres"
+                                       value="{{ .Movie.Genres }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Genres }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Creators</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="creators" name="creators"
+                                       value="{{ .Movie.Creators }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Creators }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Studio</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="studio" name="studio"
+                                       value="{{ .Movie.Studio }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;">{{ .Movie.Studio }}</td>
+                        {{end}}
+                    </tr>
+                    <tr>
+                        <th class="border-right border-dark" style="padding-right: 5px;">Link</th>
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <td class="form-group" style="padding-left: 5px;">
+                                <input type="text" class="form-control" id="extLink" name="extLink"
+                                       value="{{ .Movie.ExtLink }}">
+                            </td>
+                        {{else}}
+                            <td style="padding-left: 5px;"><a href="{{ .Movie.ExtLink }}">{{ .Movie.ExtLink }}</a></td>
+                        {{end}}
+                    </tr>
+                </table>
+            </div>
+            {{if eq $role "ADMIN" "MODERATOR"}}
+            <button type="submit" class="btn btn-primary" style="justify-self: center">SUBMIT</button>
+        </form>
+        {{end}}
+
     </div>
 {{end}}

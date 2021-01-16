@@ -1,0 +1,38 @@
+{{template "base" . }}
+{{define "body"}}
+
+    <br>
+
+    <div class="row">
+        {{$role := ""}}
+        {{if .Authorized}}
+            {{$role = .User.Role}}
+        {{end}}
+        {{range .Users }}
+            <div class="col-5">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Name Surname: {{.Name}} {{.Surname}}</h5>
+                        <p class="card-text">Login: {{.Login}}</p>
+                        <p class="card-text">Role: {{.Role}}</p>
+
+                        {{if eq $role "MODERATOR" }}
+                            {{if eq .Role "USER"}}
+                                <form action="/users/{{ .Id }}/upgrade/{{ .Role }}" method="post" style="display: inline">
+                                    <button type="submit" class="btn btn-info">UPGRADE</button>
+                                </form>
+                            {{else}}
+                                <form action="/users/{{ .Id }}/upgrade/{{ .Role }}" method="post" style="display: inline">
+                                    <button type="submit" class="btn btn-warning">DOWNGRADE</button>
+                                </form>
+                            {{end}}
+                            <form action="/users/{{ .Id }}/delete" method="post" style="display: inline">
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        {{end}}
+                    </div>
+                </div>
+            </div>
+        {{ end }}
+    </div>
+{{end}}

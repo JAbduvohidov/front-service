@@ -4,6 +4,10 @@
     <br>
 
     <div class="row">
+        {{$role := ""}}
+        {{if .Authorized}}
+            {{$role = .User.Role}}
+        {{end}}
         {{range .Movies }}
             <div class="col-3">
                 <div class="card">
@@ -11,10 +15,16 @@
                     <div class="card-body">
                         <h5 class="card-title">{{.Title }}</h5>
                         <p class="card-text">{{ range $_, $val := .Genres }}
-                                {{ $val }},
+                                {{ $val }}
                             {{ end }}
                         </p>
-                        <a href="/{{ .Id }}" class="btn btn-primary">MORE</a>
+                        <a href="/movies/{{ .Id }}" class="btn btn-primary">MORE</a>
+
+                        {{if eq $role "ADMIN" "MODERATOR" }}
+                            <form action="/movies/{{ .Id }}/delete" method="post" style="display: inline">
+                                <button type="submit" class="btn btn-danger">DELETE</button>
+                            </form>
+                        {{end}}
                     </div>
                 </div>
             </div>

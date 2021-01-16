@@ -1,0 +1,109 @@
+{{template "base" . }}
+{{define "body"}}
+
+    <br>
+
+    <form method="post" action="/profile">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="profile-img">
+                    {{if ne .User.User2.Avatar ""}}
+                        <img src="{{.User.User2.Avatar}}"
+                             alt="profile_image" class="img-thumbnail"/>
+                    {{end}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="profile-head">
+                    <h4>
+                        {{.User.Name}}
+                    </h4>
+                    {{if eq .User.Role "ADMIN" "MODERATOR"}}
+                        <h6>
+                            Role: {{.User.Role}}
+                        </h6>
+                    {{end}}
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                               aria-controls="profile" aria-selected="true">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="edit-tab" data-toggle="tab" href="#edit" role="tab"
+                               aria-controls="edit" aria-selected="false">Edit</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" style="margin-left: 10px; margin-top: 10px" id="profile"
+                         role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{.User.User2.Name}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Surname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{.User.User2.Surname}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>Login</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p>{{.User.User2.Login}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" style="margin-left: 10px; margin-top: 10px" id="edit" role="tabpanel"
+                         aria-labelledby="edit-tab">
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-3">
+                                <label for="name">Name</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" name="name"
+                                       value="{{.User.User2.Name}}">
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-3">
+                                <label for="surname">Surname</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="surname" name="surname"
+                                       value="{{.User.User2.Surname}}">
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-3">
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom: 5px">
+                            <div class="col-md-6"></div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+{{end}}
